@@ -2,6 +2,8 @@ package com.cmcc.identification.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CharacteristicsLibrary {
 
@@ -14,6 +16,11 @@ public class CharacteristicsLibrary {
      *用户的uuid
      */
     private String uuid;
+
+    /**
+     *用户的uuid
+     */
+    private String[] uuidArr;
 
     /**
      *表示图片的类型

@@ -3,7 +3,7 @@ package com.cmcc.identification.entity;
 import lombok.Data;
 
 @Data
-public class Customer {
+public class Frequenter {
 
     /**
      * 记录行号
@@ -35,6 +35,6 @@ public class Customer {
     /**
      *渠道编码
      */
-    private String channel_code;
+        private String channel_code;
     
 }

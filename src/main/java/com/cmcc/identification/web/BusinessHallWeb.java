@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/businessHall")
+@RequestMapping("/business-hall")
 public class BusinessHallWeb {
 
+    //厅店信息更新
     @PostMapping("businessHall")
-    public R businessHall(HttpServletRequest req, @RequestBody BusinessHall businessHall) {
+    public R businessHall(@RequestBody BusinessHall businessHall) {
         R result = null;
         try {
-            result = R.OK("上传成功");
+            result = R.OK("上传成功"+businessHall.toString());
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
