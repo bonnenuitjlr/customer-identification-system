@@ -23,7 +23,10 @@ public class BusinessHallManagement {
     public R businessHall(@RequestBody BusinessHall businessHall) {
         R result = null;
         try {
-            result = R.OK("上传成功"+businessHall.toString());
+//            result = R.OK("上传成功"+businessHall.toString());
+            List<String> list = new ArrayList<String>();
+            list.add("上报成功");
+            result = R.OK(list);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -51,7 +54,6 @@ public class BusinessHallManagement {
             store_size.add("宽");
             map.put("camera_position",camera_position);
             map.put("store_size",store_size);
-            map.put("request",thermalCamera.toString());
             result = R.OK(map);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());

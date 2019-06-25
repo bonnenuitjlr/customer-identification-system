@@ -18,11 +18,6 @@ public class CharacteristicsLibrary {
     private String uuid;
 
     /**
-     *用户的uuid
-     */
-    private String[] uuidArr;
-
-    /**
      *表示图片的类型
      * 0表示身份证，1表示现场照，2表示摄像头抓拍照
      */

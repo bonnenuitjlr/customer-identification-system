@@ -21,7 +21,7 @@ public class ThermalAnalysis {
     public R thermalMonitoring(@RequestBody ThermalMonitoring thermalMonitoring) {
         R result = null;
         try {
-            result = R.OK("成功上报"+thermalMonitoring.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -35,10 +35,28 @@ public class ThermalAnalysis {
                           @RequestParam("prd_id")String prd_id,
                           @RequestParam("cty_id")String cty_id,
                           @RequestParam("isfullview")String isfullview,
-                          @RequestParam("timerange")String timerange) {
+                          @RequestParam("timerange")String[] timerange) {
         R result = null;
         try {
-            result = R.OK("10"+"camera_id:{"+camera_id+"};org_id:{"+org_id+"};prd_id:{"+prd_id+"};cty_id:{"+cty_id+"};isfullview:{"+isfullview+"};timerange:{"+timerange+"}");
+            List<Map<String,Object>> data = new ArrayList<Map<String, Object>>();
+            Map<String,Object> map1 = new HashMap<String, Object>();
+            List<String> heats1 = new ArrayList<String>();
+            heats1.add("热力分布1-1");
+            heats1.add("热力分布1-2");
+            map1.put("base64_snapshot","热力背景图1");
+            map1.put("heat",heats1);
+
+            Map<String,Object> map2 = new HashMap<String, Object>();
+            List<String> heats2 = new ArrayList<String>();
+            heats2.add("热力分布2-1");
+            heats2.add("热力分布2-2");
+            map2.put("base64_snapshot","热力背景图2");
+            map2.put("heat",heats2);
+            
+            data.add(map1);
+            data.add(map2);
+            
+            result = R.OK(data);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }

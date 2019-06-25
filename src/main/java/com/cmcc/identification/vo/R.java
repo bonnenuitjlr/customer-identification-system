@@ -60,7 +60,7 @@ public class R extends LinkedHashMap<String, Object> {
     public static R OK(Map<String, Object> body) {
         R res = new R();
         res.put("code", 200);
-        res.put("error_msg", "success");
+        res.put("error_msg", "");
         res.put("data", body);
         return res;
     }

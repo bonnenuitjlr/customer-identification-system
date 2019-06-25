@@ -1,8 +1,15 @@
 package com.cmcc.identification.web;
 
 import com.cmcc.identification.entity.*;
+import com.cmcc.identification.vo.CharacteristicsLibraryVo;
 import com.cmcc.identification.vo.R;
 import org.springframework.web.bind.annotation.*;
+import sun.java2d.loops.GeneralRenderer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/passenger-flow-identification")
@@ -13,7 +20,7 @@ public class PassengerFlowIdentification {
     public R faceImages(@RequestBody FaceImages faceImages) {
         R result = null;
         try {
-            result = R.OK("成功上报"+faceImages.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -25,7 +32,7 @@ public class PassengerFlowIdentification {
     public R addCharacteristicsLibrary(@RequestBody CharacteristicsLibrary characteristicsLibrary) {
         R result = null;
         try {
-            result = R.OK("成功上报"+characteristicsLibrary.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -34,10 +41,14 @@ public class PassengerFlowIdentification {
 
     //特征库删除
     @DeleteMapping("characteristicsLibrary")
-    public R deletedCharacteristicsLibrary(@RequestBody CharacteristicsLibrary characteristicsLibrary) {
+    public R deletedCharacteristicsLibrary(@RequestBody CharacteristicsLibraryVo characteristicsLibraryVo) {
         R result = null;
         try {
-            result = R.OK("删除成功"+characteristicsLibrary.toString());
+            List<String> list = new ArrayList<String>();
+            for(String uuid:characteristicsLibraryVo.getUuid()){
+                list.add(uuid);
+            }
+            result = R.OK(list);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -49,7 +60,7 @@ public class PassengerFlowIdentification {
     public R deletedAllCharacteristicsLibrary(@RequestBody CharacteristicsLibrary characteristicsLibrary) {
         R result = null;
         try {
-            result = R.OK("清库成功"+characteristicsLibrary.toString());
+            result = R.OK("清库成功");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -61,7 +72,7 @@ public class PassengerFlowIdentification {
     public R identifyResults(@RequestBody IdentifyResults identifyResults) {
         R result = null;
         try {
-            result = R.OK("成功上报"+identifyResults.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -76,7 +87,7 @@ public class PassengerFlowIdentification {
                              @RequestParam("cty_id")String cty_id) {
         R result = null;
         try {
-            result = R.OK("realTimePassengerFlow"+"camera_id:{"+camera_id+"};org_id:{"+org_id+"};prd_id:{"+prd_id+"};cty_id:{"+cty_id+"}");
+            result = R.OK("10");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -86,12 +97,28 @@ public class PassengerFlowIdentification {
     //统计客流
     @GetMapping("statisticsPassengerFlow")
     public R statisticsPassengerFlow(@RequestParam("org_id")String org_id,
-                             @RequestParam("timerange")String timerange,
+                             @RequestParam("timerange")String[] timerange,
                              @RequestParam("prd_id")String prd_id,
                              @RequestParam("cty_id")String cty_id) {
         R result = null;
         try {
-            result = R.OK("statisticsPassengerFlow"+"org_id:{"+org_id+"};timerange:{"+timerange+"};prd_id:{"+prd_id+"};cty_id:{"+cty_id+"}");
+            Map<String,Object> map = new HashMap<String, Object>();
+            List<String> totals = new ArrayList<String>();
+            List<String> genders = new ArrayList<String>();
+            List<String> ages = new ArrayList<String>();
+            totals.add("10");
+            totals.add("200");
+            genders.add("1");
+            genders.add("2");
+            ages.add("18");
+            ages.add("29");
+            ages.add("39");
+            ages.add("64");
+            ages.add("65");
+            map.put("total",totals);
+            map.put("gender",genders);
+            map.put("age",ages);
+            result = R.OK(map);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -103,7 +130,7 @@ public class PassengerFlowIdentification {
     public R customerInfo(@RequestBody CustomerInfo customerInfo) {
         R result = null;
         try {
-            result = R.OK("成功上报"+customerInfo.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -115,7 +142,7 @@ public class PassengerFlowIdentification {
     public R frequenter(@RequestBody Frequenter frequenter) {
         R result = null;
         try {
-            result = R.OK("成功上报"+frequenter.toString());
+            result = R.OK("成功上报");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
