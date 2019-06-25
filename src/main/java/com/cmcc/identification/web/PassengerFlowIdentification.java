@@ -8,6 +8,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/passenger-flow-identification")
 public class PassengerFlowIdentification {
 
+    //人脸抓拍图片上报
+    @PostMapping("faceImages")
+    public R faceImages(@RequestBody FaceImages faceImages) {
+        R result = null;
+        try {
+            result = R.OK("成功上报"+faceImages.toString());
+        } catch (Exception e) {
+            result = R.ERROR(500, e.toString());
+        }
+        return result;
+    }
+
     //特征库入库
     @PostMapping("characteristicsLibrary")
     public R addCharacteristicsLibrary(@RequestBody CharacteristicsLibrary characteristicsLibrary) {
