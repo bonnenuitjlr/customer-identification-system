@@ -23,10 +23,7 @@ public class BusinessHallManagement {
     public R businessHall(@RequestBody BusinessHall businessHall) {
         R result = null;
         try {
-//            result = R.OK("上传成功"+businessHall.toString());
-            List<String> list = new ArrayList<String>();
-            list.add("上报成功");
-            result = R.OK(list);
+            result = R.OK("上传成功");
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }
@@ -41,17 +38,17 @@ public class BusinessHallManagement {
             Map<String,Object> map = new HashMap<String,Object>();
             //假数据
             List<Object> camera_position = new ArrayList<>();
-            camera_position.add("p1");
-            camera_position.add("p2");
-            camera_position.add("p3");
-            camera_position.add("p4");
-            camera_position.add("c1");
-            camera_position.add("c2");
-            camera_position.add("c3");
-            camera_position.add("c4");
+            camera_position.add("100");
+            camera_position.add("200");
+            camera_position.add("300");
+            camera_position.add("400");
+            camera_position.add("100");
+            camera_position.add("200");
+            camera_position.add("300");
+            camera_position.add("400");
             List<Object> store_size = new ArrayList<>();
-            store_size.add("长");
-            store_size.add("宽");
+            store_size.add("50");
+            store_size.add("30");
             map.put("camera_position",camera_position);
             map.put("store_size",store_size);
             result = R.OK(map);

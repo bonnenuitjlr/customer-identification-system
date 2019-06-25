@@ -38,25 +38,13 @@ public class ThermalAnalysis {
                           @RequestParam("timerange")String[] timerange) {
         R result = null;
         try {
-            List<Map<String,Object>> data = new ArrayList<Map<String, Object>>();
-            Map<String,Object> map1 = new HashMap<String, Object>();
+            Map<String,Object> map = new HashMap<String, Object>();
             List<String> heats1 = new ArrayList<String>();
-            heats1.add("热力分布1-1");
-            heats1.add("热力分布1-2");
-            map1.put("base64_snapshot","热力背景图1");
-            map1.put("heat",heats1);
-
-            Map<String,Object> map2 = new HashMap<String, Object>();
-            List<String> heats2 = new ArrayList<String>();
-            heats2.add("热力分布2-1");
-            heats2.add("热力分布2-2");
-            map2.put("base64_snapshot","热力背景图2");
-            map2.put("heat",heats2);
-            
-            data.add(map1);
-            data.add(map2);
-            
-            result = R.OK(data);
+            heats1.add("热力分布1");
+            heats1.add("热力分布2");
+            map.put("base64_snapshot","热力背景图");
+            map.put("heat",heats1);
+            result = R.OK(map);
         } catch (Exception e) {
             result = R.ERROR(500, e.toString());
         }

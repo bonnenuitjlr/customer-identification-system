@@ -27,4 +27,5 @@ public class CharacteristicsLibraryVo {
      *区域id
      */
     private String cty_id;
+    
 }
