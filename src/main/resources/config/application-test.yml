@@ -11,10 +11,6 @@ server:
     accesslog:
       directory: /data/logs/
       enabled: false
-endpoints:
-  shutdown:
-    enabled: true
-    sensitive: false
 
 management:
   context-path: /
@@ -29,13 +25,4 @@ spring:
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
-      
-javamelody: 
-  enabled: true
-  excluded-datasources: secretSource,topSecretSource
-  spring-monitoring-enabled: true
-  advisor-auto-proxy-creator-enabled: false
-  scheduled-monitoring-enabled: true
-  init-parameters:
-    log: true
       
