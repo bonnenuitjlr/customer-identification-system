@@ -25,4 +25,9 @@ spring:
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
-      
+remote:
+  businessHall:
+    name: TestProject
+    businessHall：/test/bast/get/{name}
+    businessHall1: /test/base/post
+    businessHall2: /test/base/delete/{name}
