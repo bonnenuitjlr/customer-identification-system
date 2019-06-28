@@ -4,7 +4,7 @@ spring:
     time-zone: GMT+8
     date-format: yyyyMMdd HHmmss
 server:
-  port: 8122
+  port: 8101
   context-path: /customer-identification-system
   max-http-header-size: 8192
   tomcat:

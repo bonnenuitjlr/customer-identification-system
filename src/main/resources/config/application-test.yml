@@ -1,7 +1,16 @@
-endpoints:
-  shutdown:
-    enabled: true
-    sensitive: false
+server:
+  port: 8101
+  context-path: /customer-identification-system
+  max-http-header-size: 8192
+  tomcat:
+    accept-count: 5000
+    max-connections: 30000
+    max-threads: 5000
+    uri-encoding: UTF-8
+    min-spare-threads: 200
+    accesslog:
+      directory: /data/logs/
+      enabled: false
 
 management:
   context-path: /
@@ -16,11 +25,4 @@ spring:
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
-
-remote:
-  businessHall:
-    name: TestProject
-    businessHall: /test/base/get/{name}
-    businessHall1: /test/base/post
-    businessHall2: /test/base/delete/{name}
-    
+      
