@@ -1,20 +1,23 @@
 package com.cmcc.identification.web;
 
-import com.cmcc.identification.entity.FaceImages;
-import com.cmcc.identification.entity.ThermalCamera;
+import com.cmcc.identification.cache.ThermalCacheManager;
 import com.cmcc.identification.entity.ThermalMonitoring;
 import com.cmcc.identification.vo.R;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("/thermal-analysis")
 public class ThermalAnalysis {
+	
+	@Resource
+	private ThermalCacheManager thermalCacheManager;
 
     //热力监控区域上报
     @PostMapping("thermalMonitoring")
@@ -26,6 +29,7 @@ public class ThermalAnalysis {
             result = R.ERROR(500, e.toString());
         }
         return result;
+//        return thermalCacheManager.heatAreaReport(thermalMonitoring);
     }
 
     //查询热力图
@@ -49,6 +53,7 @@ public class ThermalAnalysis {
             result = R.ERROR(500, e.toString());
         }
         return result;
+//        return thermalCacheManager.thermalChart(camera_id, org_id, prd_id, cty_id, isfullview, timerange);
     }
     
 }

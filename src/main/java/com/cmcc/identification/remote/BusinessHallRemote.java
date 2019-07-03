@@ -26,4 +26,27 @@ public interface BusinessHallRemote {
     @RequestMapping(value = "${remote.mrule.list}", method = RequestMethod.GET)
     String userLabelList(@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize")Integer pageSize,@RequestParam(value = "searchString" ) String searchString);
     
+    /**
+     * 热力区域上报
+     * @param requestMap ThermalMonitoring 类中的相关参数
+     * @return 
+     */
+    @RequestMapping(value = "${remote.businessHall.heatAreaReport}", method = RequestMethod.POST)
+    public String heatAreaReport(@RequestParam(required = false) Map<String, Object> requestMap);
+    
+    /**
+     * 查询热力图
+     * @param camera_id 摄像头id
+     * @param org_id 店铺id
+     * @param prd_id 5位省代码
+     * @param cty_id 区域id
+     * @param isfullview 全景实景热力标识
+     * @param timerange 时间范围  字符串组
+     * @return
+     */
+    @RequestMapping(value = "${remote.businessHall.queryHeatChart}", method = RequestMethod.GET)
+    public String queryHeatChart(@RequestParam("camera_id") String camera_id, @RequestParam("org_id") String org_id, @RequestParam("prd_id") String prd_id, 
+    		@RequestParam("cty_id") String cty_id, @RequestParam("isfullview") String isfullview, @RequestParam("timerange") String[] timerange);
+    
+    
 }

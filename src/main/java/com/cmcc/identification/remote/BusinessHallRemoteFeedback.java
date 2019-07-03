@@ -39,6 +39,19 @@ public class BusinessHallRemoteFeedback implements FallbackFactory<BusinessHallR
 				return null;
 			}
 
+			@Override
+			public String heatAreaReport(Map<String, Object> requestMap) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public String queryHeatChart(String camera_id, String org_id, String prd_id, String cty_id,
+					String isfullview, String[] timerange) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
 
         };
     }

@@ -4,7 +4,6 @@ import com.cmcc.identification.entity.*;
 import com.cmcc.identification.vo.CharacteristicsLibraryVo;
 import com.cmcc.identification.vo.R;
 import org.springframework.web.bind.annotation.*;
-import sun.java2d.loops.GeneralRenderer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,6 +3,7 @@ package com.cmcc.identification.vo;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@SuppressWarnings("serial")
 public class R extends LinkedHashMap<String, Object> {
 
     public R() {
