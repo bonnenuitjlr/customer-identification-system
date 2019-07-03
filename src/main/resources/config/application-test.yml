@@ -14,6 +14,6 @@ spring:
 remote: 
   businessHall: 
     name: TestProject
-    businessHall: /test/bast/get/{name}
+    businessHall: /test/base/get/{name}
     businessHall1: /test/base/post
     businessHall2: /test/base/delete/{name}

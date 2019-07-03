@@ -42,4 +42,9 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 2000
+            timeoutInMilliseconds: 2000                 #断路器，请求发出后多长时间超时
+      circuitBreaker: 
+        sleepWindowInMilliseconds: 1000                 #断路器，断路器跳闸后等待多长时间重试
+logging:
+  level:
+    com.cmcc.identification.remote.BusinessHallRemote: debug

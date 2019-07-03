@@ -1,13 +1,14 @@
 package com.cmcc.identification.remote;
 
-import com.cmcc.identification.entity.User;
+import com.cmcc.identification.config.FeignConfiguration;
+import com.cmcc.identification.entity.feigin.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 
-@FeignClient(name="${remote.businessHall.name}", fallbackFactory = com.cmcc.identification.remote.BusinessHallRemoteFeedback.class)
+@FeignClient(name="${remote.businessHall.name}", fallbackFactory = com.cmcc.identification.remote.BusinessHallRemoteFeedback.class, configuration = FeignConfiguration.class)
 public interface BusinessHallRemote {
 
     @RequestMapping(value = "${remote.businessHall.businessHall}", method = RequestMethod.GET)

@@ -2,7 +2,7 @@ package com.cmcc.identification.web;
 
 import com.cmcc.identification.entity.BusinessHall;
 import com.cmcc.identification.entity.ThermalCamera;
-import com.cmcc.identification.entity.User;
+import com.cmcc.identification.entity.feigin.User;
 import com.cmcc.identification.remote.BusinessHallRemote;
 import com.cmcc.identification.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;

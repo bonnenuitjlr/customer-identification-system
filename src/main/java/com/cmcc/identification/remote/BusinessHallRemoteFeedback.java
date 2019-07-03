@@ -2,7 +2,7 @@ package com.cmcc.identification.remote;
 
 import java.util.Map;
 
-import com.cmcc.identification.entity.User;
+import com.cmcc.identification.entity.feigin.User;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
