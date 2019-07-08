@@ -17,6 +17,21 @@ remote:
     businessHall: /test/base/get/{name}
     businessHall1: /test/base/post
     businessHall2: /test/base/delete/{name}
+    heatAreaReport: /heatcomputation
+    queryHeatChart: /heatcomputation
+  face-service:
+    name: face-service
+    face-feature: /v1/face/feature
+  heat-service: 
+    name: heat -service
+    heatcomputation: /heatcomputation
+  sync-service:
+    name: sync-service
+    sync-visitor: /sync/visitor
+  gclib:
+    name: gclib
+    fdb-portrait: /fdb/portrait
+    store-person: /store/person
+    store-person-reset: /store/person/reset
+    store-person-search: /store/person/search
     
-    heatAreaReport: 
-    queryHeatChart: 
