@@ -5,6 +5,9 @@ import feign.hystrix.FallbackFactory;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class GclibRemoteFeedback implements FallbackFactory<GclibRemote> {
     @Override
     public GclibRemote create(Throwable cause) {

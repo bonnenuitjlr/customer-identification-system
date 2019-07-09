@@ -24,7 +24,7 @@ public class ErrorConst {
 	public final static int R501 = 501; //热力区域上报错误
 	
 	public final static int QFAIL = 600; //查询错误
-	public final static int Q601 = 600; //热力图查询错误
+	public final static int Q601 = 601; //热力图查询错误
 	
 	public final static String getMessage(Integer code){
 		String msg = message.get(code);
