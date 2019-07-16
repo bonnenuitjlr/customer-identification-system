@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(name="${remote.gclib.name}", fallbackFactory = com.cmcc.identification.remote.FaceServiceRemoteFeedback.class, configuration = FeignConfiguration.class)
+@FeignClient(name="${remote.gclib.name}",url = "${remote.gclib.url}", fallbackFactory = com.cmcc.identification.remote.FaceServiceRemoteFeedback.class, configuration = FeignConfiguration.class)
 public interface GclibRemote {
 
     @RequestMapping(value = "${remote.gclib.fdb-portrait}" ,method = RequestMethod.POST)

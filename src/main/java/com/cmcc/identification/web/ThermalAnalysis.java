@@ -1,6 +1,5 @@
 package com.cmcc.identification.web;
 
-import com.cmcc.identification.cache.ThermalCacheManager;
 import com.cmcc.identification.entity.ThermalMonitoring;
 import com.cmcc.identification.vo.R;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,8 @@ import javax.annotation.Resource;
 @RequestMapping("/thermal-analysis")
 public class ThermalAnalysis {
 	
-	@Resource
-	private ThermalCacheManager thermalCacheManager;
+//	@Resource
+//	private ThermalCacheManager thermalCacheManager;
 
     //热力监控区域上报
     @PostMapping("thermalMonitoring")
