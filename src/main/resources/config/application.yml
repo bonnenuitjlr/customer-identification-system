@@ -6,7 +6,7 @@ spring:
 server:
   port: 8101
   context-path: /customer-identification-system
-  max-http-header-size: 8192
+  max-http-header-size: -1
   tomcat:
     accept-count: 2000
     max-connections: 20000
@@ -16,9 +16,12 @@ server:
     accesslog:
       directory: /data/logs/
       enabled: false
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 2000      
 feign:
   hystrix:
-    enabled: true
+    enabled: true         #开启断路器
   httpclient:
     enabled: true
     max-connections: 4000
@@ -42,7 +45,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 2000                 #断路器，请求发出后多长时间超时
+            timeoutInMilliseconds: 5000                 #断路器，请求发出后多长时间超时
       circuitBreaker: 
         sleepWindowInMilliseconds: 1000                 #断路器，断路器跳闸后等待多长时间重试
 logging:

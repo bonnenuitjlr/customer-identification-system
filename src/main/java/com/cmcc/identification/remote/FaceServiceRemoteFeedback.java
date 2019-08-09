@@ -1,5 +1,6 @@
 package com.cmcc.identification.remote;
 
+import com.cmcc.identification.entity.feigin.Face;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
@@ -10,8 +11,10 @@ public class FaceServiceRemoteFeedback implements FallbackFactory<FaceServiceRem
     @Override
     public FaceServiceRemote create(Throwable cause) {
         return new FaceServiceRemote() {
+
+
             @Override
-            public String faceFeature(String image) {
+            public String faceFeature(Face face) {
                 return null;
             }
         };

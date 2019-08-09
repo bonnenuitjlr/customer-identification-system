@@ -1,12 +1,12 @@
 spring:
-  task: 
+  task:
     pool:
       corePoolSize: 16
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
-remote: 
-  businessHall: 
+remote:
+  businessHall:
     name: TestProject
     url: localhost:8102
     businessHall: /test/base/get/{name}
@@ -14,9 +14,9 @@ remote:
     businessHall2: /test/base/delete/{name}
   face-service:
     name: face-service
-    url: localhost:8102
-    face-feature: /test/base/incoming/visit_on_group
-  heat-service: 
+    url: 10.70.100.158:5001
+    face-feature: /incoming/visit_on_group
+  heat-service:
     name: heat-service
     url: localhost:8080
     heatcomputation: /heatcomputation
@@ -31,4 +31,3 @@ remote:
     store-person: /store/person
     store-person-reset: /store/person/reset
     store-person-search: /store/person/search
-    
