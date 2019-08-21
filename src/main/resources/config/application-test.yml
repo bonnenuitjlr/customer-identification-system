@@ -5,6 +5,15 @@ spring:
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
+
+token:
+  login-url: http://admin.aihall.zj.chinamobile.com/api/users/login
+#  login: /api/users/login
+  login-username: aihall
+  login-password: U2FsdGVkX19B5qA6zUQWvfAKeuEdh7zA5UewmqMCZf4=:::ngpU/GO7pA6O+lzBgIrcdQBaY68+kOnlKHiPQWbnVHxvLCjVUmNtllZlBViOwhSu8yY2CYOqx/O1s4lruxN0/SQVkABZgiGAZ6tYy7ZXPOboz/NF/JzESPzzlpuH31Q7S9/Bls1epTIP2JwJrzCkeiM0PEN7llOZcL0icHSCNW0=
+  store-url: http://admin.aihall.zj.chinamobile.com/api/stores/find
+  store-param: 11
+
 remote: 
   businessHall: 
     name: TestProject

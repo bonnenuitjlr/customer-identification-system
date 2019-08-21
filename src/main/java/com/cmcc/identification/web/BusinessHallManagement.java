@@ -29,7 +29,7 @@ public class BusinessHallManagement {
         R result = null;
         try {
             User user = new User();
-            user.setName(businessHall.getOrg_id());
+//            user.setName(businessHall.getOrg_id());
             String s = businessHallRemote.businessHall(businessHall.getCty_id());
             String s1 = businessHallRemote.businessHall1(user);
             String s2 = businessHallRemote.businessHall2(businessHall.getPrd_id());

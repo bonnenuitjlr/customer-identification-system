@@ -33,7 +33,8 @@ public class PassengerFlowIdentification {
             if(code!=200){
                 return R.ERROR(code,(String)faceFeatureMap.get("msg"));
             }
-            Map<String, Object> data = (Map<String, Object>) faceFeatureMap.get("data");
+            Map<String, Object> data =
+                    (Map<String, Object>) faceFeatureMap.get("data");
 
             //2.处理返回结果
             result = R.OK(data);
