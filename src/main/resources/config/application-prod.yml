@@ -30,7 +30,5 @@ remote:
     url: localhost:8080
     fdb-portrait: /fdb/portrait
     store-person: /store/person
-    store-person-reset: /store/person/reset
-    store-person-search: /store/person/search
 
 

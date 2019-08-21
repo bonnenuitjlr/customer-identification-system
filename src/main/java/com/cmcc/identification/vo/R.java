@@ -65,6 +65,21 @@ public class R extends LinkedHashMap<String, Object> {
         res.put("data", body);
         return res;
     }
+    
+    /**
+     * 成功
+     * 加入预留字段返回样式
+     * @param body
+     * @return
+     */
+    public static R OK(Object body, String content) {
+        R res = new R();
+        res.put("code", 200);
+        res.put("error_msg", "");
+        res.put("data", body);
+        res.put("isfullview", content);
+        return res;
+    }
 
     /**
      * 成功

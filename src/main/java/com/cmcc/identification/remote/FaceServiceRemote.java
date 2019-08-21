@@ -1,10 +1,7 @@
 package com.cmcc.identification.remote;
 
 import com.cmcc.identification.config.FeignConfiguration;
-import com.cmcc.identification.config.TokenAopConfig;
 import com.cmcc.identification.entity.feigin.Face;
-import com.cmcc.identification.token.TokenMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
