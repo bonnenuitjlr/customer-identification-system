@@ -11,10 +11,8 @@ public class FaceServiceRemoteFeedback implements FallbackFactory<FaceServiceRem
     @Override
     public FaceServiceRemote create(Throwable cause) {
         return new FaceServiceRemote() {
-
-
             @Override
-            public String faceFeature(Face face) {
+            public String faceFeature(Face face, String cameraMac, String cameraId, String storeId) {
                 return null;
             }
         };

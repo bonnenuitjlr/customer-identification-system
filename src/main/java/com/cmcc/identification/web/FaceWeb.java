@@ -4,13 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.cmcc.identification.entity.FaceImages;
 import com.cmcc.identification.entity.feigin.Face;
+import com.cmcc.identification.remote.BusinessHallRemote;
 import com.cmcc.identification.remote.FaceServiceRemote;
 import com.cmcc.identification.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -27,15 +25,17 @@ public class FaceWeb {
         R result = null;
         try {
             //1.调用人脸服务获取数据
-            String faceFeature = faceServiceRemote.faceFeature(new Face(faceImages.getMac_address(),faceImages.getOrg_id(),faceImages.getBase64_face()));
-            Map<String, Object> faceFeatureMap = JSONObject.parseObject(faceFeature, new TypeReference<Map<String, Object>>() {});
+            String faceFeature = faceServiceRemote.faceFeature(new Face(faceImages.getMac_address(), faceImages.getBase64_face(), faceImages.getTimestamp(), ""),
+                    faceImages.getMac_address(),
+                    "",
+                    faceImages.getOrg_id());
+            Map<String, Object> faceFeatureMap = JSONObject.parseObject(faceFeature, new TypeReference<Map<String, Object>>() {
+            });
             Integer code = (Integer) faceFeatureMap.get("code");
-            if(code!=200){
-                return R.ERROR(code,(String)faceFeatureMap.get("msg"));
+            if (code != 200) {
+                return R.ERROR(code, (String) faceFeatureMap.get("error_msg"));
             }
-            Map<String, Object> data =
-                    (Map<String, Object>) faceFeatureMap.get("data");
-
+            Map<String, Object> data = (Map<String, Object>) faceFeatureMap.get("data");
             //2.处理返回结果
             result = R.OK(data);
         } catch (Exception e) {
@@ -43,4 +43,5 @@ public class FaceWeb {
         }
         return result;
     }
+
 }

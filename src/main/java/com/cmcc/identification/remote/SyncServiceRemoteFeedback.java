@@ -1,5 +1,6 @@
 package com.cmcc.identification.remote;
 
+import com.cmcc.identification.entity.feigin.SyscEntity;
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
@@ -10,7 +11,7 @@ public class SyncServiceRemoteFeedback implements FallbackFactory<SyncServiceRem
     public SyncServiceRemote create(Throwable cause) {
         return new SyncServiceRemote() {
             @Override
-            public String syncVisitor(int visit_time, int age) {
+            public String syncVisitor(SyscEntity syscEntity) {
                 return null;
             }
         };

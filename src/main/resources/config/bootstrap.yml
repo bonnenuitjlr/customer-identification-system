@@ -1,6 +1,7 @@
-spring: 
+spring:
   profiles:
     active: test
   application:
     name: CustomIdentification
-    
+
+

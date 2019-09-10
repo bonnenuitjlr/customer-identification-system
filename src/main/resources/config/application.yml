@@ -7,47 +7,8 @@ server:
   port: 8101
   context-path: /customer-identification-system
   max-http-header-size: -1
-  tomcat:
-    accept-count: 2000
-    max-connections: 20000
-    max-threads: 2000
-    uri-encoding: UTF-8
-    min-spare-threads: 200
-    accesslog:
-      directory: /data/logs/
-      enabled: false
-ribbon:
-  ConnectTimeout: 500
-  ReadTimeout: 2000      
-feign:
-  hystrix:
-    enabled: true         #开启断路器
-  httpclient:
-    enabled: true
-    max-connections: 4000
-    max-connections-per-route: 2000
-  compression:
-    request:
-      min-request-size: 1024
-      mime-types:
-        - text/xml
-        - application/xml
-        - application/json
-      enabled: true
-    response:
-      enabled: true
-hystrix:
-  threadpool:
-    default:
-      coreSize: 500
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000                 #断路器，请求发出后多长时间超时
-      circuitBreaker: 
-        sleepWindowInMilliseconds: 1000                 #断路器，断路器跳闸后等待多长时间重试
-logging:
-  level:
-    com.cmcc.identification.remote.BusinessHallRemote: debug
+nacos:
+  config:
+    server-addr: 192.168.10.102:8848
+  discovery:
+    server-addr: 192.168.10.102:8848
