@@ -10,10 +10,10 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cmcc.identification.helper.RedisHelper;
 import com.cmcc.identification.remote.HeatServiceRemote;
 import com.cmcc.identification.util.RedisUtil;
 import com.cmcc.identification.vo.R;
@@ -28,6 +28,9 @@ public class ThermalCacheManager {
 
     @Resource
     public RedisUtil redisUtil;
+    
+    @Resource
+    private RedisHelper redisHelper;
 
     @Value("${redis.uniquekey.mac_key}")
     private String mac_key;
@@ -46,10 +49,7 @@ public class ThermalCacheManager {
 
     public R thermalChart(String mac_address, String org_id, String prd_id,
                           String cty_id, String isfullview, String[] timerange) {
-//		(@RequestParam("org_id") String org_id,@RequestParam("store_id") String store_id, 
-//	    		@RequestParam("attributes") String attributes, @RequestParam("time_ranges") String time_ranges,
-//	    		@RequestParam("floor_id") Integer floor_id)
-        String store_id = getStoreIdByOrgId(org_id);
+        String store_id = redisHelper.getStoreIdByOrgId(org_id);
         String attributes = "";
         if (isfullview == "0") {
             List<String> tmp = new ArrayList<String>();
@@ -99,9 +99,9 @@ public class ThermalCacheManager {
     private Map<String, Object> thermalScene_transMap(ThermalSceneChartVo thermal) {
         Map<String, Object> map = new HashMap<String, Object>();
         String mac_address = thermal.getMac_address();
-        String camera_id = getCameraIdByMacAddress(mac_address);                    // 根据mac_address 获取摄像头id camera_id
+        String camera_id = redisHelper.getCameraIdByMacAddress(mac_address);                    // 根据mac_address 获取摄像头id camera_id
         String base64_image = thermal.getBase64_image();
-        redisUtil.hSet(mac_key_image, camera_id, base64_image);                        // 把该摄像头最新传入的图片存入redis
+        redisUtil.hSet(mac_key_image, camera_id, base64_image);                        			// 把该摄像头最新传入的图片存入redis
 
         map.put("camera_id", camera_id);
         map.put("org_id", thermal.getOrg_id());
@@ -110,36 +110,6 @@ public class ThermalCacheManager {
         map.put("duration", thermal.getDuration());
         map.put("configuration", thermal.getConfiguration());
         return map;
-    }
-
-    /*
-     *  把mac_address转化为摄像头id，并维护mac集合
-     */
-    private synchronized String getCameraIdByMacAddress(String mac_address) {
-
-        boolean flag = redisUtil.hExists(mac_key, mac_address);
-        if (flag) {
-            return redisUtil.hGet(mac_key, mac_address);
-        } else {
-            long tmpMax = redisUtil.incr(mac_key_max);
-            redisUtil.hSet(mac_key, mac_address, String.valueOf(tmpMax));
-            return String.valueOf(tmpMax);
-        }
-    }
-
-    /*
-     *  把org_id转化为store_id，并维护店铺id集合
-     */
-    private synchronized String getStoreIdByOrgId(String org_id) {
-
-        boolean flag = redisUtil.hExists(org_key, org_id);
-        if (flag) {
-            return redisUtil.hGet(org_key, org_id);
-        } else {
-            long tmpMax = redisUtil.incr(org_key_max);
-            redisUtil.hSet(org_key, org_id, String.valueOf(tmpMax));
-            return String.valueOf(tmpMax);
-        }
     }
 
     /*

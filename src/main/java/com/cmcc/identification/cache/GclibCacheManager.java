@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,9 @@ import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cmcc.identification.entity.CharacteristicsLibrary;
+import com.cmcc.identification.helper.RedisHelper;
 import com.cmcc.identification.remote.GclibRemote;
 import com.cmcc.identification.util.MD5Util;
-import com.cmcc.identification.util.RedisUtil;
 import com.cmcc.identification.vo.CharacteristicsLibraryVo;
 import com.cmcc.identification.vo.R;
 import com.cmcc.identification.vo.Response;
@@ -25,8 +27,8 @@ public class GclibCacheManager {
     @Autowired
     private GclibRemote gclibRemote;
 
-    @Autowired
-    private RedisUtil redisUtil;
+    @Resource
+    private RedisHelper redisHelper;
 
     @Value("${redis.uniquekey.org_key}")
     private String org_key;
@@ -63,7 +65,7 @@ public class GclibCacheManager {
         map.put("uuid", gclib.getUuid());
         map.put("type", Integer.valueOf(gclib.getType()));
         map.put("org_id", gclib.getOrg_id());
-        map.put("store_id", redisUtil.hGet(org_key, gclib.getOrg_id()));
+        map.put("store_id", redisHelper.getStoreIdByOrgId(gclib.getOrg_id()));
         map.put("db_no", 3);
         String identity_id = MD5Util.MD5(gclib.getOrg_id() + gclib.getUuid());
         map.put("identity_id", identity_id);
@@ -87,7 +89,7 @@ public class GclibCacheManager {
         String value = JSONObject.toJSONString(list);
         map.put("identity_ids", value);
         map.put("org_id", gclib.getOrg_id());
-        map.put("store_id", redisUtil.hGet(org_key, gclib.getOrg_id()));
+        map.put("store_id", redisHelper.getStoreIdByOrgId(gclib.getOrg_id()));
         return map;
     }
 

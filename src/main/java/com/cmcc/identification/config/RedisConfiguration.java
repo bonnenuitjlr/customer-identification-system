@@ -3,6 +3,7 @@ package com.cmcc.identification.config;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +60,6 @@ public class RedisConfiguration {
         RedisTemplate<String, Object> temple = new RedisTemplate<String, Object>();
         temple.setKeySerializer(new StringRedisSerializer());
         temple.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-
         temple.setConnectionFactory(connectionFactory(hostName, maxIdle, maxTotal, database, maxWaitMillis, testOnBorrow, mode, password, master4Sentinel));
         return temple;
     }
@@ -93,7 +93,7 @@ public class RedisConfiguration {
         JedisConnectionFactory jedis = new JedisConnectionFactory();
         jedis.setHostName(host);
         jedis.setPort(port);
-        jedis.setPassword(password);
+        jedis.setPassword(StringUtils.isNotBlank(password) ? password : null);
         if (index != 0) {
             jedis.setDatabase(index);
         }

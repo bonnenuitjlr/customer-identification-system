@@ -7,12 +7,10 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cmcc.identification.config.RedisConfiguration;
 import com.cmcc.identification.util.RedisUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,6 +19,9 @@ public class RedisTest {
 	
 	@Resource
 	public RedisUtil redisUtil;
+	
+	@Resource
+	public RedisTemplate redisTemplate;
 	
 //	@Resource
 //	public RedisConfiguration redisConfiguration;
@@ -35,7 +36,7 @@ public class RedisTest {
 	
 	@Test
 	public void catJedis() {
-		redisUtil.set("xin", "yu");
+//		redisUtil.set("xin", "yu");
 		String res = redisUtil.get("xin");
 		System.out.println("redis-key: xin="+res);
 	}

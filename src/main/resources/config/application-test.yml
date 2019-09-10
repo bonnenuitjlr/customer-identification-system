@@ -11,7 +11,8 @@ spring:
     mode: stand_alone       # stand_alone, cluster, sentinel
     database: 0
     master4Sentinel:        # 哨兵模式(sentinel)时启用
-    password: 123456               # 默认为空
+#    password: 123456               # 默认为空
+    password:               # 默认为空
     pool:
       maxIdle: 200          # 最大空闲数
       maxTotal: 1000        # 控制一个pool可分配多少个jedis实例,用来替换上面的redis.maxActive,如果是jedis 2.4以后用该属性
