@@ -31,8 +31,9 @@ public interface HeatServiceRemote {
      * @return
      */
     @RequestMapping(value = "${remote.heat-service.queryHeatChart}", method = RequestMethod.GET)
-    public String queryHeatChart(@RequestParam("camera_id") String camera_id, @RequestParam("org_id") String org_id,
-    		@RequestParam("isfullview") String isfullview, @RequestParam("timerange") String[] timerange);
+    public String queryHeatChart(@RequestParam("org_id") String org_id,@RequestParam("store_id") String store_id, 
+    		@RequestParam("attributes") String attributes, @RequestParam("time_ranges") String time_ranges,
+    		@RequestParam("floor_id") Integer floor_id);
     
     
     @RequestMapping(value = "${remote.heat-service.heatcomputation}" ,method = RequestMethod.POST)

@@ -19,7 +19,8 @@ public class HeatServiceRemoteFeedback implements FallbackFactory<HeatServiceRem
 			}
 
 			@Override
-			public String queryHeatChart(String camera_id, String org_id, String isfullview, String[] timerange) {
+			public String queryHeatChart(String org_id, String store_id, String attributes, String time_ranges,
+					Integer floor_id) {
 				// TODO Auto-generated method stub
 				return null;
 			}
@@ -29,6 +30,7 @@ public class HeatServiceRemoteFeedback implements FallbackFactory<HeatServiceRem
 				// TODO Auto-generated method stub
 				return null;
 			}
+
         };
     }
 }

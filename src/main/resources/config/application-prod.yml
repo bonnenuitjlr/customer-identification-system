@@ -5,6 +5,18 @@ spring:
       maxPoolSize: 32
       keepAliveSeconds: 3000
       queueCapacity: 200
+      
+  redis:
+    hostname: 192.168.159.129:7001,192.168.159.129:7002,192.168.159.129:7003,192.168.159.129:7004,192.168.159.129:7005,192.168.159.129:7006
+    mode: cluster           # stand_alone, cluster, sentinel
+    database: 0
+    master4Sentinel:        # 哨兵模式(sentinel)时启用
+    password:               # 默认为空
+    pool:
+      maxIdle: 200          # 最大空闲数
+      maxTotal: 1000        # 控制一个pool可分配多少个jedis实例,用来替换上面的redis.maxActive,如果是jedis 2.4以后用该属性
+      maxWaitMillis: 5000   # 最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+      testOnBorrow: false   # 从池中取出连接时是否检验
 
 remote:
   businessHall:
@@ -31,4 +43,10 @@ remote:
     fdb-portrait: /fdb/portrait
     store-person: /store/person
 
-
+redis:                                              # 必要
+  uniquekey:
+    mac_key: macad_macid                            # mac地址与mac id 映射集合 (全局唯一)
+    mac_key_max: macad_macid_max                    # mac当前id (新的mac自增)
+    org_key: orgid_storeid                          # 店铺id与store_id 映射集合 (全局唯一)
+    org_key_max: orgid_storeid_max                  # store 当前id (新的店铺自增)
+    mac_key_image: mac_new_image                    # 每个mac_id 的最新图像

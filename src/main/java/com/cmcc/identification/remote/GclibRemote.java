@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-@FeignClient(name="${remote.gclib.name}",url = "${remote.gclib.url}", fallbackFactory = com.cmcc.identification.remote.FaceServiceRemoteFeedback.class, configuration = FeignConfiguration.class)
+@FeignClient(name="${remote.gclib.name}",url = "${remote.gclib.url}", fallbackFactory = com.cmcc.identification.remote.GclibRemoteFeedback.class, configuration = FeignConfiguration.class)
 public interface GclibRemote {
 
 	/**

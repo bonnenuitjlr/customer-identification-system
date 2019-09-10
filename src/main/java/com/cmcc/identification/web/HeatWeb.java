@@ -3,6 +3,7 @@ package com.cmcc.identification.web;
 import com.cmcc.identification.cache.ThermalCacheManager;
 import com.cmcc.identification.entity.ThermalSceneChart;
 import com.cmcc.identification.vo.R;
+import com.cmcc.identification.vo.ThermalSceneChartVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class HeatWeb {
 
     //查询热力图
 	@GetMapping("thermalChart")
-	public R thermalChart(@RequestParam("camera_id")String camera_id,
+	public R thermalChart(@RequestParam("mac_address")String mac_address,
                         @RequestParam("org_id")String org_id,
                         @RequestParam("prd_id")String prd_id,
                         @RequestParam("cty_id")String cty_id,
@@ -40,12 +41,12 @@ public class HeatWeb {
 //          result = R.ERROR(500, e.toString());
 //      }
 //      return result;
-		return thermalCacheManager.thermalChart(camera_id, org_id, prd_id, cty_id, isfullview, timerange);
+		return thermalCacheManager.thermalChart(mac_address, org_id, prd_id, cty_id, isfullview, timerange);
   }
     
 	//上报摄像头实景图
     @PostMapping("heatcomputation")
-    public R heatcomputation(@RequestBody ThermalSceneChart thermalSceneChart) {
+    public R heatcomputation(@RequestBody ThermalSceneChartVo thermalSceneChartVo) {
 //        R result = null;
 //        try {
 //            result = R.OK("成功上报");
@@ -53,6 +54,6 @@ public class HeatWeb {
 //            result = R.ERROR(500, e.toString());
 //        }
 //        return result;
-        return thermalCacheManager.heatcomputation(thermalSceneChart);
+        return thermalCacheManager.heatcomputation(thermalSceneChartVo);
     }
 }

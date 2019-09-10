@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cmcc.identification.entity.CharacteristicsLibrary;
 import com.cmcc.identification.remote.GclibRemote;
-import com.cmcc.identification.util.ErrorConst;
 import com.cmcc.identification.util.MD5Util;
+import com.cmcc.identification.util.RedisUtil;
 import com.cmcc.identification.vo.CharacteristicsLibraryVo;
 import com.cmcc.identification.vo.R;
 import com.cmcc.identification.vo.Response;
@@ -24,6 +25,12 @@ public class GclibCacheManager {
 	@Autowired
 	private GclibRemote gclibRemote;
 	
+	@Autowired
+	private RedisUtil redisUtil;
+	
+	@Value("${redis.uniquekey.org_key}")
+	private String org_key;
+	
 	public R featureStorage(CharacteristicsLibrary gclib) {
 		Map<String,Object> requestMap = featureStorage_transMap(gclib);
 		String har = gclibRemote.featureStorage(requestMap);
@@ -31,7 +38,7 @@ public class GclibCacheManager {
 		if(!StringUtils.isEmpty(response.getData()) && response.getCode() == 200) {
 			return R.OK(response.getData());
 		}
-		return R.ERROR(ErrorConst.F701, ErrorConst.getMessage(ErrorConst.F701));
+		return R.ERROR(response.getCode(), response.getMsg());
 	}
 	
 	public R featureDelete(CharacteristicsLibraryVo gclib) {
@@ -41,7 +48,7 @@ public class GclibCacheManager {
 		if(response.getCode() == 200) {
 			return R.OK(response.getData());
 		}
-		return R.ERROR(ErrorConst.D801, ErrorConst.getMessage(ErrorConst.D801));
+		return R.ERROR(response.getCode(), response.getMsg());
 	}
 	
 	private Map<String,Object> featureStorage_transMap(CharacteristicsLibrary gclib){
@@ -50,6 +57,7 @@ public class GclibCacheManager {
 		map.put("uuid", gclib.getUuid());
 		map.put("type", Integer.valueOf(gclib.getType()));
 		map.put("org_id",gclib.getOrg_id());
+		map.put("store_id", redisUtil.hGet(org_key, gclib.getOrg_id()));
 		map.put("db_no", 3);
 		String identity_id = MD5Util.MD5(gclib.getOrg_id() + gclib.getUuid());
 		map.put("identity_id", identity_id);
@@ -58,7 +66,6 @@ public class GclibCacheManager {
 	
 	private Map<String,Object> featureDelete_transMap(CharacteristicsLibraryVo gclib){
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("org_id", gclib.getOrg_id());
 		
 		List<Map<String,Object>> list = new ArrayList<>();
 		String[] sl = gclib.getUuid();
@@ -73,6 +80,8 @@ public class GclibCacheManager {
 		}
 		String value = JSONObject.toJSONString(list);
 		map.put("identity_ids", value);
+		map.put("org_id", gclib.getOrg_id());
+		map.put("store_id", redisUtil.hGet(org_key, gclib.getOrg_id()));
 		return map;
 	}
 

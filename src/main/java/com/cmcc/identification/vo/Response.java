@@ -9,7 +9,6 @@ public class Response  implements Serializable{
 	private int code;
 	private String msg;
 	private Object data;
-	private String isfullview;
 	
 	public int getCode() {
 		return code;
@@ -33,13 +32,5 @@ public class Response  implements Serializable{
 	
 	public void setData(Object data) {
 		this.data = data;
-	}
-	
-	public String getIsfullview() {
-		return isfullview;
-	}
-	
-	public void setIsfullview(String isfullview) {
-		this.isfullview = isfullview;
 	}
 }
