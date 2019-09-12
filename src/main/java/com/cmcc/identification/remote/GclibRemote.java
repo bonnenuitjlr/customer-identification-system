@@ -1,7 +1,6 @@
 package com.cmcc.identification.remote;
 
 import com.cmcc.identification.config.FeignConfiguration;
-import com.cmcc.identification.entity.feigin.CharacteristicsLibraryFeign;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

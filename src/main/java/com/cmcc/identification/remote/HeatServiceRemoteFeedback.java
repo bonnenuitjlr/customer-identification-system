@@ -12,24 +12,18 @@ public class HeatServiceRemoteFeedback implements FallbackFactory<HeatServiceRem
     public HeatServiceRemote create(Throwable cause) {
         return new HeatServiceRemote() {
 
-			@Override
-			public String heatAreaReport(Map<String, Object> requestMap) {
-				// TODO Auto-generated method stub
-				return null;
-			}
+            @Override
+            public String queryHeatChart(String org_id, String store_id, String attributes, String time_ranges,
+                                         Integer floor_id) {
+                // TODO Auto-generated method stub
+                return null;
+            }
 
-			@Override
-			public String queryHeatChart(String org_id, String store_id, String attributes, String time_ranges,
-					Integer floor_id) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public String heatcomputation(Map<String, Object> requestMap) {
-				// TODO Auto-generated method stub
-				return null;
-			}
+            @Override
+            public String heatcomputation(Map<String, Object> requestMap) {
+                // TODO Auto-generated method stub
+                return null;
+            }
 
         };
     }

@@ -7,12 +7,12 @@ spring:
       queueCapacity: 200
 
   redis:
-    hostname: 192.168.10.54:6379
+    hostname: 192.168.10.102:6379
     mode: stand_alone       # stand_alone, cluster, sentinel
     database: 0
     master4Sentinel:        # 哨兵模式(sentinel)时启用
-#    password: 123456               # 默认为空
-    password:               # 默认为空
+    password: 123456               # 默认为空
+    #    password:               # 默认为空
     pool:
       maxIdle: 200          # 最大空闲数
       maxTotal: 1000        # 控制一个pool可分配多少个jedis实例,用来替换上面的redis.maxActive,如果是jedis 2.4以后用该属性
@@ -20,31 +20,24 @@ spring:
       testOnBorrow: false   # 从池中取出连接时是否检验
 
 remote:
-  businessHall:
-    name: TestProject
-    url: localhost:8102
-    businessHall: /test/base/get/{name}
-    businessHall1: /test/base/post
-    businessHall2: /test/base/delete/{name}
   face-service:
     name: face-service
     url: localhost:8102
-    face-feature: /test/base/incoming/visit_on_group
+    face-feature: /incoming/visit?policy=znv_tcp_camera
   heat-service:
     name: heat-service
-    url: localhost:8080
+    url: localhost:8102
+    queryHeatChart: /statistic/attribute_query
     heatcomputation: /heatcomputation
   sync-service:
     name: sync-service
-    url: localhost:8080
-    sync-visitor: /sync/visitor
+    url: localhost:8102
+    sync-visitor: /mixed_data/solo_store
   gclib:
     name: gclib
     url: localhost:8102
     fdb-portrait: /fdb/portrait
     store-person: /store/person
-    store-person-reset: /store/person/reset
-    store-person-search: /store/person/search
 redis:                                              # 必要
   uniquekey:
     mac_key: macad_macid                            # mac地址与mac id 映射集合 (全局唯一)

@@ -7,8 +7,4 @@ server:
   port: 8101
   context-path: /customer-identification-system
   max-http-header-size: -1
-nacos:
-  config:
-    server-addr: 192.168.10.102:8848
-  discovery:
-    server-addr: 192.168.10.102:8848
+

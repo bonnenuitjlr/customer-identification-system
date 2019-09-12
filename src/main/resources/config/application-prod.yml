@@ -7,7 +7,7 @@ spring:
       queueCapacity: 200
 
   redis:
-    hostname: 192.168.159.129:7001,192.168.159.129:7002,192.168.159.129:7003,192.168.159.129:7004,192.168.159.129:7005,192.168.159.129:7006
+    hostname: 10.252.18.31:26000,10.252.18.31:26001,10.252.18.31:26002,10.252.18.31:26003,10.252.18.31:26004,10.252.18.31:26005
     mode: cluster           # stand_alone, cluster, sentinel
     database: 0
     master4Sentinel:        # 哨兵模式(sentinel)时启用
@@ -19,27 +19,22 @@ spring:
       testOnBorrow: false   # 从池中取出连接时是否检验
 
 remote:
-  businessHall:
-    name: TestProject
-    url: localhost:8102
-    businessHall: /test/base/get/{name}
-    businessHall1: /test/base/post
-    businessHall2: /test/base/delete/{name}
   face-service:
     name: face-service
-    url: 10.70.100.158:5001
-    face-feature: /incoming/visit_on_group
+    url: 10.70.100.158:15006
+    face-feature: /incoming/visit?policy=znv_tcp_camera
   heat-service:
     name: heat-service
-    url: localhost:8080
+    url: 10.252.18.33:5001
+    queryHeatChart: /statistic/attribute_query
     heatcomputation: /heatcomputation
   sync-service:
     name: sync-service
-    url: localhost:8080
-    sync-visitor: /sync/visitor
+    url: 10.252.18.33:5000
+    sync-visitor: /mixed_data/solo_store
   gclib:
     name: gclib
-    url: localhost:8080
+    url: 10.252.18.33:5005
     fdb-portrait: /fdb/portrait
     store-person: /store/person
 
